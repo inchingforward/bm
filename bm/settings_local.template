@@ -23,4 +23,4 @@ DATABASES = {
 }
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'p3x4ub7=22agow(r$qcf9!nl=a6&aqp;0=#vu*m$hrd=eswh3l9*bd'
+SECRET_KEY = 'CHANGEME'
