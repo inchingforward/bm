@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.views.generic import TemplateView
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -7,6 +8,8 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'bm.bookmarks.views.home', name='home'),
+    url(r'^about/', TemplateView.as_view(template_name="about.html")),
+    url(r'^contact/', TemplateView.as_view(template_name="contact.html")),
     url(r'^bookmarks/', include('bm.bookmarks.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
