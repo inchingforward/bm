@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'bm.bookmarks.views.home', name='home'),
+    url(r'^$', 'bm.bookmarks.views.index', name='bookmarks'),
     url(r'^about/', TemplateView.as_view(template_name="about.html")),
     url(r'^contact/', TemplateView.as_view(template_name="contact.html")),
     url(r'^bookmarks/', include('bm.bookmarks.urls')),
