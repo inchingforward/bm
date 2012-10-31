@@ -7,9 +7,9 @@ from django.views.generic import TemplateView
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'bm.bookmarks.views.index', name='bookmarks'),
-    url(r'^about/', TemplateView.as_view(template_name="about.html")),
-    url(r'^contact/', TemplateView.as_view(template_name="contact.html")),
+    url(r'^$', 'bm.bookmarks.views.index', name='index'),
+    url(r'^about/', TemplateView.as_view(template_name="about.html"), name='about'),
+    url(r'^contact/', TemplateView.as_view(template_name="contact.html"), name='contact'),
     url(r'^bookmarks/', include('bm.bookmarks.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
