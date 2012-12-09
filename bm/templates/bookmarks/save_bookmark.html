@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Save Bookmark</h1>
+
+<form method="post" action="">
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<p><input type="submit" value="Save" /></p>
+</form>
+
+{% endblock %}
