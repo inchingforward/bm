@@ -3,10 +3,11 @@
 {% block content %}
 <h1>Bookmarks</h1>
 
-<ul>
+<dl>
 {% for bookmark in object_list %}
-<li><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></li>
+<dt><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></dt>
+<dd><a href="{% url bookmark_update bookmark.id %}">Edit</a></dd>
 {% endfor %}
-</ul>
+</dl>
 
 {% endblock %}

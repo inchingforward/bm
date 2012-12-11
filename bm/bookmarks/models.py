@@ -20,5 +20,5 @@ class Bookmark(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse('bookmark-detail', kwargs={'pk': self.pk})
+        return reverse('bookmark_detail', kwargs={'pk': self.pk})
 
