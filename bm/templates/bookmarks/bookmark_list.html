@@ -4,7 +4,7 @@
 <h1>Bookmarks</h1>
 
 <ul>
-{% for bookmark in bookmarks %}
+{% for bookmark in object_list %}
 <li><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></li>
 {% endfor %}
 </ul>

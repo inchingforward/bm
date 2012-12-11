@@ -1,14 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.forms import ModelForm
-
+from django.views.generic import ListView
+from braces.views import LoginRequiredMixin
 from bm.bookmarks.models import Bookmark
 
-
-@login_required
-def index(request):
-    bookmarks = Bookmark.objects.filter(user=request.user).order_by('-create_date')
-    return render(request, "bookmarks/bookmark_list.html", {'bookmarks': bookmarks})
 
 @login_required
 def save_bookmark(request):
@@ -22,6 +18,10 @@ def save_bookmark(request):
             bookmark.save()
             
     return render(request, "bookmarks/save_bookmark.html", {'form': form})
+
+class BookmarkListView(LoginRequiredMixin, ListView):
+    def get_queryset(self):
+        return Bookmark.objects.filter(user=self.request.user).order_by('-create_date')
 
 class BookmarkForm(ModelForm):
     class Meta:
