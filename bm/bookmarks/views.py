@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 from braces.views import LoginRequiredMixin
@@ -12,6 +13,7 @@ class BookmarkCreateView(LoginRequiredMixin, CreateView):
         
         def form_valid(self, form):
             form.instance.user = self.request.user
+            messages.success(self.request, "Bookmark added.")
             return super(BookmarkCreateView, self).form_valid(form)
 
 class BookmarkUpdateView(LoginRequiredMixin, UpdateView):
