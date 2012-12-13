@@ -2,11 +2,14 @@ import os
 
 BASE_DIR = os.path.dirname(__file__)
 
-# Django machine-agnostic settings for bm project.  To 
-# create a machine/deployment-specific settings file, copy 
-# settings_local.template to settings_local.py and make 
-# whatever changes you need.  Do not commit settings_local.py
-# to source control (it's already in .gitignore).
+def bool_env(val):
+    """Replaces string based environment values with Python booleans"""
+    return True if os.environ.get(val, False) == 'True' else False
+        
+DEBUG = bool_env('BM_DEBUG')
+TEMPLATE_DEBUG = DEBUG
+DATABASES = {}
+SECRET_KEY = os.environ.get('BM_SECRET_KEY', 'CHANGEME')
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -139,4 +142,5 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages', 
 )
 
-from settings_local import *
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config(default='postgres://localhost:5432/bm')
