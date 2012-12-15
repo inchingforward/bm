@@ -1,4 +1,6 @@
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 from braces.views import LoginRequiredMixin
@@ -24,4 +26,9 @@ class BookmarkUpdateView(LoginRequiredMixin, UpdateView):
 class BookmarkListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Bookmark.objects.filter(user=self.request.user).order_by('-create_date')
+
+class UserBookmarkListView(ListView):
+    def get_queryset(self):
+        user = get_object_or_404(User, username__iexact=self.args[0])
+        return Bookmark.objects.filter(user=user).filter(private=False).order_by('-create_date')
 
