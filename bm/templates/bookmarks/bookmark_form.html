@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>{% if not object %}Add{% else %}Edit{% endif %} Bookmark</h1>
+<h2>{% if not object %}Add{% else %}Edit{% endif %} Bookmark</h2>
 
 <form method="post" action="">
 {% csrf_token %}
