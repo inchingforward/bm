@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h2>Bookmarks</h2>
+<h2>{% if specified_user %}{{ specified_user }}'s {% endif %}Bookmarks</h2>
 
 <dl>
 {% for bookmark in object_list %}

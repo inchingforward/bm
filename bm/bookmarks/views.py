@@ -28,6 +28,13 @@ class BookmarkListView(LoginRequiredMixin, ListView):
         return Bookmark.objects.filter(user=self.request.user).order_by('-create_date')
 
 class UserBookmarkListView(ListView):
+    def get_context_data(self, **kwargs):
+            context = super(ListView, self).get_context_data(**kwargs)
+            context.update({
+                'specified_user': self.args[0],
+            })
+            return context
+    
     def get_queryset(self):
         user = get_object_or_404(User, username__iexact=self.args[0])
         return Bookmark.objects.filter(user=user).filter(private=False).order_by('-create_date')
