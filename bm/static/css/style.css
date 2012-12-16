@@ -1,3 +1,26 @@
 body {
     padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar (bootstrap) */
 }
+
+
+.bookmark-list-item {
+    margin-bottom: 15px;
+    padding: 3px;
+}
+
+.bookmark-list-title {
+    font-size: 16px;
+}
+
+.bookmark-list-actions {
+    
+    font-size: 12px;
+}
+
+.bookmark-list-tags {
+    color: #999;
+}
+
+.private-bookmark {
+    font-style: italic;
+}
