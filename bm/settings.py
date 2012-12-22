@@ -10,6 +10,7 @@ DEBUG = bool_env('BM_DEBUG')
 TEMPLATE_DEBUG = DEBUG
 DATABASES = {}
 SECRET_KEY = os.environ.get('BM_SECRET_KEY', 'CHANGEME')
+GOOGLE_ANALYTICS_ID = os.environ.get('BM_GOOGLE_ANALYTICS_ID', '')
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -141,6 +142,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth', 
     'django.contrib.messages.context_processors.messages', 
+    'django.core.context_processors.request', 
+    'bm.context_processors.bm_settings', 
 )
 
 import dj_database_url
