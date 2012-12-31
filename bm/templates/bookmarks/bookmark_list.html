@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% load humanize %}
 
 {% block content %}
 <h2>{% if specified_user %}{{ specified_user }}'s {% endif %}Bookmarks</h2>
@@ -6,6 +7,7 @@
 {% for bookmark in object_list %}
 <div class="bookmark-list-item{% if bookmark.private %} private-bookmark{% endif %}">
     <div class="bookmark-list-title"><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></div>
+    
     <div class="bookmark-list-notes">{{ bookmark.notes }}</div>
     <div class="bookmark-list-tags">
         {% if bookmark.tags.all %}
@@ -13,9 +15,12 @@
         {% for tag in bookmark.tags.all %} {{ tag }} {% endfor %}
         {% endif %}
     </div>
-    {% if bookmark.user == user %}
-    <div class="bookmark-list-actions"><a href="{% url bookmark_update bookmark.id %}">Edit</div>
-    {% endif %}
+    <div class="bookmark-list-extras">
+        <span class="bookmark-list-date" title="{{ bookmark.create_date }}">{{ bookmark.create_date|naturaltime }}</span>
+        {% if bookmark.user == user %}
+        <a href="{% url bookmark_update bookmark.id %}">Edit</a>
+        {% endif %}
+    </div>
 </div>
 {% endfor %}
 
