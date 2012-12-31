@@ -6,6 +6,7 @@
 {% for bookmark in object_list %}
 <div class="bookmark-list-item{% if bookmark.private %} private-bookmark{% endif %}">
     <div class="bookmark-list-title"><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></div>
+    <div class="bookmark-list-notes">{{ bookmark.notes }}</div>
     <div class="bookmark-list-tags">
         {% if bookmark.tags.all %}
         <i class="icon-tag"></i>
