@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% load humanize %}
 
+{% block title %}
+{% if specified_user %}{{ specified_user }}'s {% endif %}Bookmarks
+{% endblock %}
+
 {% block content %}
 <h2>{% if specified_user %}{{ specified_user }}'s {% endif %}Bookmarks</h2>
 
