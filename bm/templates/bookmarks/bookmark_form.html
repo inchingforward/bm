@@ -21,25 +21,25 @@
 <p>
     {{ form.title.errors }}
     <label for="id_title">Title:</label> 
-    <input id="id_title" type="text" name="title" maxlength="200" value="{{ form.title.value|default:"" }}" />
+    {{ form.title }}
     <input type="button" id="fetch_button" class="btn btn-primary" value="Fetch Title" onClick="fetchTitle();" data-loading-text="Fetching..." />
 </p>
 
 <p>
     {{ form.notes.errors }}
     <label for="id_notes">Notes:</label> 
-    <textarea id="id_notes" rows="10" cols="40" name="notes">{{ form.notes.value|default:"" }}</textarea>
+    {{ form.notes }}
 </p>
 
 <p>
     <label for="id_private">Private:</label> 
-    <input type="checkbox" name="private" id="id_private" {% if form.private.value %}checked="true"{% endif %} />
+    {{ form.private }}
 </p>
 
 <p>
     {{ form.tags.errors }}
     <label for="id_tags">Tags:</label> 
-    <input type="text" name="tags" id="id_tags" value="{{ form.tags.value }}" /> <span class="helptext">A comma-separated list of tags.</span>
+    {{ form.tags }}
 </p>
 
 <p><input type="submit" value="Save" /></p>
