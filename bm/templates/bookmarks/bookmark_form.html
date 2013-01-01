@@ -21,7 +21,7 @@
 <p>
     {{ form.title.errors }}
     <label for="id_title">Title:</label> 
-    <input id="id_title" type="text" name="title" maxlength="200" value="{{ form.url.value|default:"" }}" />
+    <input id="id_title" type="text" name="title" maxlength="200" value="{{ form.title.value|default:"" }}" />
     <input type="button" id="fetch_button" class="btn btn-primary" value="Fetch Title" onClick="fetchTitle();" data-loading-text="Fetching..." />
 </p>
 
