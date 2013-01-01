@@ -1,12 +1,30 @@
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 from braces.views import LoginRequiredMixin
 from bm.bookmarks.forms import BookmarkForm
 from bm.bookmarks.models import Bookmark
+from BeautifulSoup import BeautifulSoup
+import requests
 
+
+def fetch_url_title(request):
+    title = ''
+    try:
+        url = request.GET.get('url', '')
+        if url:
+            result = requests.get(url)
+            if result and result.status_code == 200:
+                soup = BeautifulSoup(result.content)
+                if soup.title:
+                    title = soup.title.string
+    except Exception as e:
+        print 'unexpected fetch_url_title error: %s' % e
+    
+    return HttpResponse(title)
 
 class BookmarkCreateView(LoginRequiredMixin, CreateView):
         model = Bookmark

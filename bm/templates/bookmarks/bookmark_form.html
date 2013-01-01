@@ -11,7 +11,36 @@
 <form method="post" action="">
 {% csrf_token %}
 
-{{ form.as_p }}
+{{ form.non_field_errors }}
+<p>
+    {{ form.url.errors }}
+    <label for="id_url">Url:</label> 
+    <input id="id_url" type="text" name="url" maxlength="200" value="{{ form.url.value|default:"" }}" />
+</p>
+
+<p>
+    {{ form.title.errors }}
+    <label for="id_title">Title:</label> 
+    <input id="id_title" type="text" name="title" maxlength="200" value="{{ form.url.value|default:"" }}" />
+    <input type="button" id="fetch_button" class="btn btn-primary" value="Fetch Title" onClick="fetchTitle();" data-loading-text="Fetching..." />
+</p>
+
+<p>
+    {{ form.notes.errors }}
+    <label for="id_notes">Notes:</label> 
+    <textarea id="id_notes" rows="10" cols="40" name="notes">{{ form.notes.value|default:"" }}</textarea>
+</p>
+
+<p>
+    <label for="id_private">Private:</label> 
+    <input type="checkbox" name="private" id="id_private" {% if form.private.value %}checked="true"{% endif %} />
+</p>
+
+<p>
+    {{ form.tags.errors }}
+    <label for="id_tags">Tags:</label> 
+    <input type="text" name="tags" id="id_tags" /> <span class="helptext">A comma-separated list of tags.</span>
+</p>
 
 <p><input type="submit" value="Save" /></p>
 </form>
