@@ -12,35 +12,44 @@
 {% csrf_token %}
 
 {{ form.non_field_errors }}
-<p>
-    {{ form.url.errors }}
-    <label for="id_url">Url:</label> 
-    <input id="id_url" type="text" name="url" maxlength="200" value="{{ form.url.value|default:"" }}" />
-</p>
+<table>
+<tr>
+    <td><label for="id_url">Url:</label></td>
+    <td>
+        {{ form.url.errors }}
+        <input id="id_url" type="text" name="url" maxlength="200" value="{{ form.url.value|default:"" }}" />
+    </td>
+</tr>
+<tr>
+    <td><label for="id_title">Title:</label></td>
+    <td>
+        {{ form.title.errors }}
+        {{ form.title }}
+        <input type="button" id="fetch_button" class="btn btn-primary" value="Fetch Title" onClick="fetchTitle();" data-loading-text="Fetching..." />
+    </td>
+</tr>
+<tr>
+    <td valign="top"><label for="id_notes">Notes:</label></td>
+    <td>
+        {{ form.notes.errors }}
+        {{ form.notes }}
+    </td>
+</tr>
 
-<p>
-    {{ form.title.errors }}
-    <label for="id_title">Title:</label> 
-    {{ form.title }}
-    <input type="button" id="fetch_button" class="btn btn-primary" value="Fetch Title" onClick="fetchTitle();" data-loading-text="Fetching..." />
-</p>
-
-<p>
-    {{ form.notes.errors }}
-    <label for="id_notes">Notes:</label> 
-    {{ form.notes }}
-</p>
-
-<p>
-    <label for="id_private">Private:</label> 
-    {{ form.private }}
-</p>
-
-<p>
-    {{ form.tags.errors }}
-    <label for="id_tags">Tags:</label> 
-    {{ form.tags }}
-</p>
+<tr>
+    <td><label for="id_private">Private:</label></td>
+    <td valign="top">{{ form.private }}</td>
+</tr>
+<tr>
+    <td>
+        <label for="id_tags">Tags:</label> 
+    </td>
+    <td>
+        {{ form.tags.errors }}
+        {{ form.tags }}
+    </td>
+</tr>
+</table>
 
 <p><input type="submit" value="Save" /></p>
 </form>
