@@ -39,7 +39,7 @@
 <p>
     {{ form.tags.errors }}
     <label for="id_tags">Tags:</label> 
-    <input type="text" name="tags" id="id_tags" /> <span class="helptext">A comma-separated list of tags.</span>
+    <input type="text" name="tags" id="id_tags" value="{{ form.tags.value }}" /> <span class="helptext">A comma-separated list of tags.</span>
 </p>
 
 <p><input type="submit" value="Save" /></p>
