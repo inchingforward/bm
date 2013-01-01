@@ -23,7 +23,6 @@
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     {% if user.is_authenticated %}<li><a href="/bookmarks/add">Add</a></li>{% endif %}
-                    <li><a href="/about">About</a></li>
                 </ul>
                  {% if user.is_authenticated %}
                  <form action="{% url 'logout' %}" method="post" class="navbar-form pull-right">
