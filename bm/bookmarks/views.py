@@ -26,6 +26,15 @@ def fetch_url_title(request):
     
     return HttpResponse(title)
 
+def add_filters(request, queryset):
+    """Adds any request query string parameter filters to a queryset."""
+    tag = request.GET.get('tag', '')
+    
+    if tag:
+        queryset = queryset.filter(tags__name__in=[tag])
+    
+    return queryset
+
 class BookmarkCreateView(LoginRequiredMixin, CreateView):
         model = Bookmark
         form_class = BookmarkForm
@@ -33,7 +42,7 @@ class BookmarkCreateView(LoginRequiredMixin, CreateView):
         
         def form_valid(self, form):
             form.instance.user = self.request.user
-            messages.success(self.request, "Bookmark added.")
+            messages.success(self.request, 'Bookmark added.')
             return super(BookmarkCreateView, self).form_valid(form)
 
 class BookmarkUpdateView(LoginRequiredMixin, UpdateView):
@@ -43,7 +52,10 @@ class BookmarkUpdateView(LoginRequiredMixin, UpdateView):
 
 class BookmarkListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        return Bookmark.objects.filter(user=self.request.user).order_by('-create_date')
+        qs = Bookmark.objects.filter(user=self.request.user)
+        qs = add_filters(self.request, qs)
+        
+        return qs.order_by('-create_date')
 
 class UserBookmarkListView(ListView):
     def get_context_data(self, **kwargs):
@@ -55,5 +67,8 @@ class UserBookmarkListView(ListView):
     
     def get_queryset(self):
         user = get_object_or_404(User, username__iexact=self.args[0])
-        return Bookmark.objects.filter(user=user).filter(private=False).order_by('-create_date')
+        qs = Bookmark.objects.filter(user=user).filter(private=False)
+        qs = add_filters(self.request, qs)
+
+        return qs.order_by('-create_date')
 

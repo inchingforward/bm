@@ -8,6 +8,10 @@
 {% block content %}
 <h2>{% if specified_user %}{{ specified_user }}'s {% endif %}Bookmarks</h2>
 
+{% if request.GET.tag %}
+<h4><a class="close pull-left" href="{{ request.path }}">&times;</a> &nbsp; Tag: {{ request.GET.tag }}</h4>
+{% endif %}
+
 {% for bookmark in object_list %}
 <div class="bookmark-list-item{% if bookmark.private %} private-bookmark{% endif %}">
     <div class="bookmark-list-title"><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></div>
@@ -16,7 +20,7 @@
     <div class="bookmark-list-tags">
         {% if bookmark.tags.all %}
         <i class="icon-tag"></i>
-        {% for tag in bookmark.tags.all %} {{ tag }} {% endfor %}
+        {% for tag in bookmark.tags.all %} <a href="{{ request.path }}?tag={{ tag }}">{{ tag }}</a> {% endfor %}
         {% endif %}
     </div>
     <div class="bookmark-list-extras">
