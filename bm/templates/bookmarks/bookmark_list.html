@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<h2>{% if specified_user %}{{ specified_user }}'s {% endif %}Bookmarks</h2>
+<h2>{% if specified_user %}{{ specified_user }}'s {% else %}Your {% endif %}Bookmarks</h2>
 
 {% if request.GET.tag %}
 <h4><a class="close pull-left" href="{{ request.path }}">&times;</a> &nbsp; Tag: {{ request.GET.tag }}</h4>
