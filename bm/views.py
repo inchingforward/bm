@@ -5,4 +5,4 @@ def index(request):
     if request.user.is_authenticated():
         return redirect('bookmarks_index')
     
-    return render(request, "index.html")
+    return render(request, 'index.html')
