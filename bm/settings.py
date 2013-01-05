@@ -107,6 +107,7 @@ INSTALLED_APPS = (
     'south',
     'taggit', 
     'bm.bookmarks',
+    'bm.news',
 )
 
 # A sample logging configuration. The only tangible logging
