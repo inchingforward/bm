@@ -13,24 +13,28 @@
 <h4><a class="close pull-left" href="{{ request.path }}">&times;</a> &nbsp; Tag: {{ request.GET.tag }}</h4>
 {% endif %}
 
-{% for bookmark in object_list %}
-<div class="bookmark-list-item{% if bookmark.private %} private-bookmark{% endif %}">
-    <div class="bookmark-list-title"><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></div>
+{% if object_list %}
+    {% for bookmark in object_list %}
+    <div class="bookmark-list-item{% if bookmark.private %} private-bookmark{% endif %}">
+        <div class="bookmark-list-title"><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></div>
     
-    <div class="bookmark-list-notes">{{ bookmark.notes|markdown:"safe" }}</div>
-    <div class="bookmark-list-tags">
-        {% if bookmark.tags.all %}
-        <i class="icon-tag"></i>
-        {% for tag in bookmark.tags.all %} <a href="{{ request.path }}?tag={{ tag }}">{{ tag }}</a> {% endfor %}
-        {% endif %}
+        <div class="bookmark-list-notes">{{ bookmark.notes|markdown:"safe" }}</div>
+        <div class="bookmark-list-tags">
+            {% if bookmark.tags.all %}
+            <i class="icon-tag"></i>
+            {% for tag in bookmark.tags.all %} <a href="{{ request.path }}?tag={{ tag }}">{{ tag }}</a> {% endfor %}
+            {% endif %}
+        </div>
+        <div class="bookmark-list-extras">
+            <span class="bookmark-list-date" title="{{ bookmark.create_date|date:"m/d/Y h:i a" }} (UTC)">{{ bookmark.create_date|naturaltime }}</span>
+            {% if bookmark.user == user %}
+            <a href="{% url bookmark_update bookmark.id %}">Edit</a>
+            {% endif %}
+        </div>
     </div>
-    <div class="bookmark-list-extras">
-        <span class="bookmark-list-date" title="{{ bookmark.create_date|date:"m/d/Y h:i a" }} (UTC)">{{ bookmark.create_date|naturaltime }}</span>
-        {% if bookmark.user == user %}
-        <a href="{% url bookmark_update bookmark.id %}">Edit</a>
-        {% endif %}
-    </div>
-</div>
-{% endfor %}
+    {% endfor %}
+{% else %}
+    <p>No bookmarks yet.</p>
+{% endif %}
 
 {% endblock %}
