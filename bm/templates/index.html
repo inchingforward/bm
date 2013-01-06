@@ -10,6 +10,7 @@
       <a href="https://github.com/inchingforward/bm">GitHub</a>.</p>
 </div>
 
+{% if news %}
 <div id="news" class="span3 pull-right">
     <h1>News</h2>
     {% for news_item in news %}
@@ -18,6 +19,7 @@
     <p>{{ news_item.details }}</p>
     {% endfor %}
 </div>
+{% endif %}
 
 {% if GOOGLE_ANALYTICS_ID %}
 <script type="text/javascript">
