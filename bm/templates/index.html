@@ -2,12 +2,21 @@
 
 {% block content %}
 
-<div class="hero-unit">
+<div class="hero-unit span6">
   <h2>Bookmarks</h2>
   <p>Bookmarks is a personal project by Mike Janger. Registration 
       is closed, although a guest account should be available soon. 
       The source is available on 
       <a href="https://github.com/inchingforward/bm">GitHub</a>.</p>
+</div>
+
+<div id="news" class="span3 pull-right">
+    <h1>News</h2>
+    {% for news_item in news %}
+    <h2>{{ news_item.title }}</h2>
+    <h3>{{ news_item.create_date|date:"F d, Y" }}</h3>
+    <p>{{ news_item.details }}</p>
+    {% endfor %}
 </div>
 
 {% if GOOGLE_ANALYTICS_ID %}
