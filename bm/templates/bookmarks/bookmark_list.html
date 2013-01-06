@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% load humanize %}
+{% load markup %}
 
 {% block title %}
 {% if specified_user %}{{ specified_user }}'s {% endif %}Bookmarks
@@ -16,7 +17,7 @@
 <div class="bookmark-list-item{% if bookmark.private %} private-bookmark{% endif %}">
     <div class="bookmark-list-title"><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></div>
     
-    <div class="bookmark-list-notes">{{ bookmark.notes }}</div>
+    <div class="bookmark-list-notes">{{ bookmark.notes|markdown:"safe" }}</div>
     <div class="bookmark-list-tags">
         {% if bookmark.tags.all %}
         <i class="icon-tag"></i>

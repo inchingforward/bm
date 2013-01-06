@@ -1,5 +1,6 @@
 BeautifulSoup==3.2.1
 Django==1.4.2
+Markdown==2.2.1
 South==0.7.6
 dj-database-url==0.2.1
 django-braces==0.2.1
