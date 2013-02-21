@@ -8,7 +8,6 @@ def bool_env(val):
         
 DEBUG = bool_env('BM_DEBUG')
 TEMPLATE_DEBUG = DEBUG
-DATABASES = {}
 SECRET_KEY = os.environ.get('BM_SECRET_KEY', 'CHANGEME')
 GOOGLE_ANALYTICS_ID = os.environ.get('BM_GOOGLE_ANALYTICS_ID', '')
 
@@ -149,4 +148,4 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config(default='postgres://localhost:5432/bm')
+DATABASES = {'default': dj_database_url.config(default=os.environ.get('BM_DATABASE_URL'))}
