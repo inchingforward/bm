@@ -20,7 +20,7 @@
         <div class="bookmark-list-notes">{{ bookmark.notes|markdown:"safe" }}</div>
         <div class="bookmark-list-tags">
             {% if bookmark.tags.all %}
-            <i class="icon-tag"></i>
+            <i class="fa fa-tag"></i>
             {% for tag in bookmark.tags.all %} <a href="{{ request.path }}?tag={{ tag }}">{{ tag }}</a> {% endfor %}
             {% endif %}
         </div>
