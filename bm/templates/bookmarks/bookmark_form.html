@@ -8,57 +8,64 @@
 
 <h2>{% if not object %}Add{% else %}Edit{% endif %} Bookmark</h2>
 
-<form method="post" action="">
-{% csrf_token %}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="well">
+            <form method="post" action="">
+            {% csrf_token %}
 
-{{ form.non_field_errors }}
-<table>
-<tr>
-    <td><label for="id_url">Url:</label></td>
-    <td>
-        {{ form.url.errors }}
-        <input id="id_url" type="text" name="url" maxlength="200" value="{{ form.url.value|default:"" }}" />
-    </td>
-</tr>
-<tr>
-    <td><label for="id_title">Title:</label></td>
-    <td>
-        {{ form.title.errors }}
-        {{ form.title }}
-        <input type="button" id="fetch_button" class="btn btn-primary" value="Fetch Title" onClick="fetchTitle();" data-loading-text="Fetching..." />
-    </td>
-</tr>
-<tr>
-    <td valign="top"><label for="id_notes">Notes:</label></td>
-    <td>
-        {{ form.notes.errors }}
-        {{ form.notes }}
-    </td>
-</tr>
+            {{ form.non_field_errors }}
+            <table id="bookmark-form-table">
+            <tr>
+                <td><label for="id_url">Url:</label></td>
+                <td>
+                    {{ form.url.errors }}
+                    <input id="id_url" type="text" name="url" maxlength="200" value="{{ form.url.value|default:"" }}" />
+                </td>
+            </tr>
+            <tr>
+                <td><label for="id_title">Title:</label></td>
+                <td>
+                    {{ form.title.errors }}
+                    {{ form.title }}
+                    <input type="button" id="fetch_button" class="btn btn-primary btn-sm" value="Fetch Title" onClick="fetchTitle();" data-loading-text="Fetching..." />
+                </td>
+            </tr>
+            <tr>
+                <td valign="top"><label for="id_notes">Notes:</label></td>
+                <td>
+                    {{ form.notes.errors }}
+                    {{ form.notes }}
+                </td>
+            </tr>
+            <tr>
+                <td><label for="id_private">Private:</label></td>
+                <td valign="top">{{ form.private }}</td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="id_tags">Tags:</label> 
+                </td>
+                <td>
+                    {{ form.tags.errors }}
+                    {{ form.tags }}
+                </td>
+            </tr>
+            </table>
+            
+            <p><button type="submit" class="btn btn-primary">Save</button></p>
+            
+            </form>
+        </div>
+    </div>
+</div>
 
-<tr>
-    <td><label for="id_private">Private:</label></td>
-    <td valign="top">{{ form.private }}</td>
-</tr>
-<tr>
-    <td>
-        <label for="id_tags">Tags:</label> 
-    </td>
-    <td>
-        {{ form.tags.errors }}
-        {{ form.tags }}
-    </td>
-</tr>
-</table>
+{% endblock %}
 
-<p><input type="submit" value="Save" /></p>
-</form>
-
+{% block js %}
 <script type="text/javascript">
 $(document).ready(function() {
     $("#id_url").focus();
 });
 </script>
-
-
 {% endblock %}

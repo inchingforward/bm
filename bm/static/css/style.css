@@ -72,3 +72,12 @@
     padding: 0;
     margin: 0;
 }
+
+#bookmark-form-table {
+    margin-bottom: 30px;
+}
+
+#login-form {
+    margin-top: 20px;
+}
+}
