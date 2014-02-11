@@ -18,7 +18,11 @@
     {% for bookmark in object_list %}
     <div class="bookmark{% if bookmark.private %} private-bookmark{% endif %}">
         <h1><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></h1>
+        {% if bookmark.category.name == 'Bookmark' %}
         {{ bookmark.notes|markdown:"safe" }}
+        {% else %}
+        {{ bookmark.notes|truncatewords:10}}
+        {% endif %}
         <h3>
             {% if bookmark.tags.all %}
             <i class="fa fa-tag"></i>
