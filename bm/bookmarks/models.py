@@ -15,7 +15,7 @@ class Bookmark(models.Model):
     url = models.URLField(null=True, blank=True)
     title = models.CharField(max_length=200)
     notes = models.TextField(null=True, blank=True)
-    private = models.BooleanField()
+    private = models.BooleanField(default=True)
     tags = TaggableManager(blank=True)
     user = models.ForeignKey(User)
     create_date = models.DateTimeField(auto_now_add=True)
