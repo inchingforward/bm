@@ -17,11 +17,11 @@
 {% if object_list %}
     {% for bookmark in object_list %}
     <div class="bookmark{% if bookmark.private %} private-bookmark{% endif %}">
-        <h1><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></h1>
         {% if bookmark.category.name == 'Bookmark' %}
+        <h1><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></h1>
         {{ bookmark.notes|markdown:"safe" }}
         {% else %}
-        {{ bookmark.notes|truncatewords:10}}
+        <h1><a href="{% url bookmark_update bookmark.id %}">{{ bookmark.title }}</a></h1>
         {% endif %}
         <h3>
             {% if bookmark.tags.all %}
