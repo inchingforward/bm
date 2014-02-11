@@ -51,6 +51,8 @@ class BookmarkUpdateView(LoginRequiredMixin, UpdateView):
         success_url = '/bookmarks/'
 
 class BookmarkListView(LoginRequiredMixin, ListView):
+    paginate_by = 20
+    
     def get_queryset(self):
         qs = Bookmark.objects.filter(user=self.request.user)
         qs = add_filters(self.request, qs)
@@ -58,6 +60,8 @@ class BookmarkListView(LoginRequiredMixin, ListView):
         return qs.order_by('-create_date')
 
 class UserBookmarkListView(ListView):
+    paginate_by = 20
+    
     def get_context_data(self, **kwargs):
             context = super(ListView, self).get_context_data(**kwargs)
             context.update({

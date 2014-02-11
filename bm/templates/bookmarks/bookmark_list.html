@@ -37,6 +37,16 @@
         </h4>
     </div>
     {% endfor %}
+    
+    <p id="bookmark-pager">
+       {% if page_obj.has_previous %}
+           <a class="pager-prev" href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-arrow-circle-o-left"></i> Page {{ page_obj.previous_page_number }}</a> 
+       {% endif %}
+
+       {% if page_obj.has_next %}
+           <a class="pager-next" href="?page={{ page_obj.next_page_number }}">Page {{ page_obj.next_page_number }} <i class="fa fa-arrow-circle-o-right"></i></a>
+       {% endif %}
+    </p>
 {% else %}
     <p>No bookmarks yet.</p>
 {% endif %}
