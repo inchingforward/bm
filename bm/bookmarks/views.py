@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from braces.views import LoginRequiredMixin
 from bm.bookmarks.forms import BookmarkForm
@@ -50,6 +50,9 @@ class BookmarkUpdateView(LoginRequiredMixin, UpdateView):
         form_class = BookmarkForm
         success_url = '/bookmarks/'
 
+class BookmarkDetailView(LoginRequiredMixin, DetailView):
+    model = Bookmark
+    
 class BookmarkListView(LoginRequiredMixin, ListView):
     paginate_by = 20
     
@@ -58,6 +61,13 @@ class BookmarkListView(LoginRequiredMixin, ListView):
         qs = add_filters(self.request, qs)
         
         return qs.order_by('-create_date')
+
+class UserBookmarkDetailView(DetailView):
+    model = Bookmark
+    
+    def get_object(self):
+        #return Bookmark.objects.get(pk=self.kwargs['pk'], private=False)
+        return get_object_or_404(Bookmark, pk=self.kwargs['pk'], private=False)
 
 class UserBookmarkListView(ListView):
     paginate_by = 20

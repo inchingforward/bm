@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
 from django.contrib import admin
-from bm.bookmarks.views import UserBookmarkListView
+from bm.bookmarks.views import UserBookmarkListView, UserBookmarkDetailView
 
 
 admin.autodiscover()
@@ -17,5 +17,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     # Default to showing a user's bookmarks
     url(r'^(\w+)/$', UserBookmarkListView.as_view(), name='user_bookmarks'),
-    url(r'^(\w+)/bookmarks/', UserBookmarkListView.as_view(), name='user_bookmarks'),
+    url(r'^(\w+)/bookmarks/$', UserBookmarkListView.as_view(), name='user_bookmarks'),
+    url(r'^(?P<username>\w+)/bookmarks/(?P<pk>\d+)/$', UserBookmarkDetailView.as_view(), name='user_bookmark_detail'), 
 )

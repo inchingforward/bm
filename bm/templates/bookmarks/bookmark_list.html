@@ -21,7 +21,11 @@
         <h1><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></h1>
         {{ bookmark.notes|markdown:"safe" }}
         {% else %}
-        <h1><a href="{% url bookmark_update bookmark.id %}">{{ bookmark.title }}</a></h1>
+            {% if bookmark.user == user %}
+            <h1><a href="{% url bookmark_detail bookmark.id %}">{{ bookmark.title }}</a></h1>
+            {% else %}
+            <h1><a href="/{{ bookmark.user.username }}/bookmarks/{{ bookmark.id }}/">{{ bookmark.title }}</a></h1>
+            {% endif %}
         {% endif %}
         <h3>
             {% if bookmark.tags.all %}
