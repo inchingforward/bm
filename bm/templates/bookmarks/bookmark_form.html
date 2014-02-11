@@ -17,6 +17,15 @@
             {{ form.non_field_errors }}
             <table id="bookmark-form-table">
             <tr>
+                <th><label for="id_category">Category:</label></th>
+                <td>
+                    <select name="category" id="id_category">
+                        <option value="1" {% if bookmark.category.id == 1 %}selected="selected"{% endif %}>Bookmark</option>
+                        <option value="2" {% if bookmark.category.id == 2 %}selected="selected"{% endif %}>Note</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td><label for="id_url">Url:</label></td>
                 <td>
                     {{ form.url.errors }}
