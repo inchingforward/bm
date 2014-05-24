@@ -20,6 +20,8 @@ class Bookmark(models.Model):
     user = models.ForeignKey(User)
     create_date = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, null=True)
+    entry_date = models.DateTimeField(auto_now_add=True)
+    entry_date.editable = True
     
     class Meta:
         ordering = ['-create_date']

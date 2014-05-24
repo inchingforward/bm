@@ -34,7 +34,7 @@
             {% endif %}
         </h3>
         <h4>
-            <span class="bookmark-list-date" title="{{ bookmark.create_date|date:"m/d/Y h:i a" }} (UTC)">{{ bookmark.create_date|naturaltime }}</span>
+            <span class="bookmark-list-date" title="{{ bookmark.entry_date|date:"m/d/Y h:i a" }} (UTC)">{{ bookmark.entry_date|naturaltime }}</span>
             {% if bookmark.user == user %}
             <a href="{% url bookmark_update bookmark.id %}">Edit</a>
             {% endif %}
