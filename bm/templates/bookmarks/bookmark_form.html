@@ -26,10 +26,10 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="id_entry_date">Entry Date:</label></td>
+                <td><label for="id_entry_date">Entry Date:&nbsp;</label></td>
                 <td>
                     {{ form.entry_date.errors }}
-                    <input id="id_entry_date" type="text" name="entry_date" maxlength="200" value="{{ form.url.entry_date }}" />
+                    <input id="id_entry_date" type="text" name="entry_date" maxlength="200" value="{{ form.entry_date.value|date:"Y-m-d H:i" }}" />
                 </td>
             </tr>
             <tr>

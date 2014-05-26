@@ -60,7 +60,7 @@ class BookmarkListView(LoginRequiredMixin, ListView):
         qs = Bookmark.objects.filter(user=self.request.user)
         qs = add_filters(self.request, qs)
         
-        return qs.order_by('-create_date')
+        return qs.order_by('-entry_date')
 
 class UserBookmarkDetailView(DetailView):
     model = Bookmark
@@ -84,5 +84,5 @@ class UserBookmarkListView(ListView):
         qs = Bookmark.objects.filter(user=user).filter(private=False)
         qs = add_filters(self.request, qs)
 
-        return qs.order_by('-create_date')
+        return qs.order_by('-entry_date')
 

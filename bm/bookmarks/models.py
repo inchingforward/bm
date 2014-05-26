@@ -24,7 +24,7 @@ class Bookmark(models.Model):
     entry_date.editable = True
     
     class Meta:
-        ordering = ['-create_date']
+        ordering = ['-entry_date']
     
     def __unicode__(self):
         return self.title
