@@ -4,6 +4,10 @@
 {% if not object %}Add{% else %}Edit{% endif %} Bookmark
 {% endblock %}
 
+{% block head %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/datepicker.css" type="text/css" charset="utf-8"/>
+{% endblock %}
+
 {% block content %}
 
 <h2>{% if not object %}Add{% else %}Edit{% endif %} Bookmark</h2>
@@ -29,7 +33,7 @@
                 <td><label for="id_entry_date">Entry Date:&nbsp;</label></td>
                 <td>
                     {{ form.entry_date.errors }}
-                    <input id="id_entry_date" type="text" name="entry_date" maxlength="200" value="{{ form.entry_date.value|date:"Y-m-d H:i" }}" />
+                    <input id="id_entry_date" type="text" name="entry_date" maxlength="200" value="{{ form.entry_date.value|date:"Y-m-d" }}" />
                 </td>
             </tr>
             <tr>
@@ -79,6 +83,8 @@
 {% endblock %}
 
 {% block js %}
+<script src="{{ STATIC_URL }}js/bootstrap-datepicker.js"></script>
+
 <script type="text/javascript">
 function save() {
     $('#save_button').addClass('disabled').text('Saving...');
@@ -86,6 +92,7 @@ function save() {
 
 $(document).ready(function() {
     $("#id_url").focus();
+    $('#id_entry_date').datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(ev){ $('#id_entry_date').datepicker('hide'); });
 });
 </script>
 {% endblock %}
